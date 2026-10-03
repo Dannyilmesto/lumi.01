@@ -1,0 +1,715 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PriceListStatus {
+  UPLOADED
+  PROCESSING
+  NEEDS_REVIEW
+  ACTIVE
+  ARCHIVED
+  FAILED
+}
+
+enum QuoteStatus {
+  DRAFT
+  SENT
+  ACCEPTED
+  APPROVED
+  REJECTED
+  ARCHIVED
+  CLOSED
+}
+
+enum QuoteMessageRole {
+  USER
+  ASSISTANT
+}
+
+enum QuoteItemPricingStatus {
+  NEEDS_PRICING
+  PRICED
+}
+
+enum CatalogProductPricingMode {
+  AREA
+  FIXED
+}
+
+enum EmailProvider {
+  GOOGLE
+  MICROSOFT
+  IMAP_SMTP
+  DEMO
+}
+
+enum AssistantDocumentSource {
+  UPLOAD
+  PRICE_LIST
+  QUOTE_DOCUMENT
+}
+
+enum ExtractionCandidateKind {
+  BASE_PRICE
+  SURCHARGE
+  DISCOUNT
+  PERCENTAGE_RULE
+  SHIPPING_OR_PACKAGING
+  UNCLASSIFIED_AMOUNT
+}
+
+enum CandidateReviewStatus {
+  NEEDS_REVIEW
+  ACCEPTED
+  REJECTED
+}
+
+model Organization {
+  id                   String                @id @default(cuid())
+  name                 String
+  slug                 String                @unique
+  logo                 String?
+  metadata             String?
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  members              Membership[]
+  calendarEvents       CalendarEvent[]
+  customers            Customer[]
+  suppliers            Supplier[]
+  quotes               Quote[]
+  catalogProducts      QuoteCatalogProduct[]
+  quoteParsingProfiles QuoteParsingProfile[]
+  assistantDocuments   AssistantDocument[]
+  invitations          Invitation[]
+}
+
+model User {
+  id                     String             @id @default(cuid())
+  email                  String             @unique
+  name                   String
+  emailVerified          Boolean            @default(false)
+  image                  String?
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+  memberships            Membership[]
+  sessions               Session[]
+  accounts               Account[]
+  sentInvitations        Invitation[]
+  isPresetAvatar         Boolean            @default(true)
+  avatarPreset           String             @default("sky")
+  avatar                 UserAvatar?
+  notes                  PrivateNote[]
+  bulletinPosts          PublicBulletin[]
+  calendarEvents         CalendarEvent[]
+  assignedCalendarEvents CalendarEvent[]    @relation("CalendarEventAssignee")
+  createdQuotes          Quote[]            @relation("QuoteCreator")
+  savedQuotes            SavedQuote[]
+  publicQuotes           PublicQuote[]
+  ownedChats             Chat[]             @relation("ChatCreator")
+  chatMemberships        ChatMember[]
+  chatMessages           ChatMessage[]
+  profileFields          UserProfileField[]
+  emailAccounts          EmailAccount[]
+  emailOAuthStates       EmailOAuthState[]
+}
+
+model EmailAccount {
+  id                    String             @id @default(cuid())
+  userId                String
+  provider              EmailProvider
+  providerAccountId     String
+  email                 String
+  accessTokenEncrypted  String             @db.Text
+  refreshTokenEncrypted String?            @db.Text
+  configEncrypted       String?            @db.Text
+  accessTokenExpiresAt  DateTime?
+  scope                 String?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  user                  User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  demoMessages          EmailDemoMessage[]
+
+  @@unique([userId, provider, email])
+  @@index([userId, createdAt])
+}
+
+model EmailDemoMessage {
+  id        String       @id @default(cuid())
+  accountId String
+  folder    String       @default("INBOX")
+  from      String
+  to        String
+  subject   String
+  body      String       @db.Text
+  isRead    Boolean      @default(false)
+  createdAt DateTime     @default(now())
+  account   EmailAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId, folder, createdAt])
+}
+
+model EmailOAuthState {
+  id        String        @id
+  userId    String
+  provider  EmailProvider
+  expiresAt DateTime
+  createdAt DateTime      @default(now())
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+}
+
+model Membership {
+  id             String       @id @default(cuid())
+  role           String       @default("member")
+  organizationId String
+  userId         String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([organizationId, userId])
+  @@index([userId])
+  @@index([organizationId])
+}
+
+model Session {
+  id                   String   @id
+  userId               String
+  token                String   @unique
+  expiresAt            DateTime
+  ipAddress            String?
+  userAgent            String?
+  activeOrganizationId String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Account {
+  id                    String    @id
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  idToken               String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, accountId])
+  @@index([userId])
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+}
+
+model Invitation {
+  id             String       @id
+  email          String
+  inviterId      String
+  organizationId String
+  role           String?
+  status         String       @default("pending")
+  expiresAt      DateTime
+  createdAt      DateTime     @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  inviter        User         @relation(fields: [inviterId], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([organizationId])
+}
+
+model Supplier {
+  id                   String                @id @default(cuid())
+  name                 String
+  organizationId       String
+  organization         Organization          @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  priceLists           PriceList[]
+  quoteParsingProfiles QuoteParsingProfile[]
+  createdAt            DateTime              @default(now())
+
+  @@unique([organizationId, name])
+}
+
+model PriceList {
+  id                String                @id @default(cuid())
+  name              String
+  version           String
+  validFrom         DateTime?
+  validTo           DateTime?
+  originalPdfKey    String
+  sha256            String
+  status            PriceListStatus       @default(UPLOADED)
+  supplierId        String
+  supplier          Supplier              @relation(fields: [supplierId], references: [id], onDelete: Restrict)
+  products          Product[]
+  pages             DocumentPage[]
+  candidates        ExtractionCandidate[]
+  extractedAt       DateTime?
+  extractionSummary Json?
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+
+  @@unique([supplierId, name, version])
+  @@index([status])
+}
+
+model AssistantDocument {
+  id                      String                  @id @default(cuid())
+  organizationId          String
+  uploadedByUserId        String?
+  fileName                String
+  originalPdfKey          String
+  sha256                  String
+  sourceType              AssistantDocumentSource @default(UPLOAD)
+  sourceId                String?
+  pageCount               Int?
+  documentKind            String?
+  deterministicExtraction Json?
+  semanticExtraction      Json?
+  scannedAt               DateTime?
+  createdAt               DateTime                @default(now())
+  updatedAt               DateTime                @updatedAt
+  organization            Organization            @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, originalPdfKey])
+  @@index([organizationId, createdAt])
+  @@index([organizationId, scannedAt])
+  @@index([organizationId, sourceType])
+}
+
+model ExtractionCandidate {
+  id                   String                  @id @default(cuid())
+  priceListId          String
+  candidateKey         String
+  kind                 ExtractionCandidateKind
+  reviewStatus         CandidateReviewStatus   @default(NEEDS_REVIEW)
+  pdfPageNumber        Int
+  printedPageNumber    Int?
+  sectionLabel         String                  @default("")
+  sourceExcerpt        String
+  boundingBox          Json
+  finishCodeCandidates Json                    @default("[]")
+  modelCandidates      Json                    @default("[]")
+  dimensionCandidates  Json                    @default("[]")
+  amounts              Json                    @default("[]")
+  percentages          Json                    @default("[]")
+  warnings             Json                    @default("[]")
+  priceList            PriceList               @relation(fields: [priceListId], references: [id], onDelete: Cascade)
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
+
+  @@unique([priceListId, candidateKey])
+  @@index([priceListId, reviewStatus])
+  @@index([priceListId, pdfPageNumber])
+}
+
+model DocumentPage {
+  id          String            @id @default(cuid())
+  priceListId String
+  pageNumber  Int
+  text        String            @default("")
+  priceList   PriceList         @relation(fields: [priceListId], references: [id], onDelete: Cascade)
+  sources     SourceReference[]
+  priceRules  PriceRule[]
+  accessories Accessory[]
+
+  @@unique([priceListId, pageNumber])
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  products Product[]
+}
+
+model Product {
+  id          String            @id @default(cuid())
+  priceListId String
+  categoryId  String
+  code        String
+  name        String
+  description String            @default("")
+  unit        String            @default("pezzo")
+  metadata    Json              @default("{}")
+  priceList   PriceList         @relation(fields: [priceListId], references: [id], onDelete: Cascade)
+  category    Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  variants    ProductVariant[]
+  priceRules  PriceRule[]
+  accessories Accessory[]
+  sources     SourceReference[]
+  quoteItems  QuoteItem[]
+
+  @@unique([priceListId, code])
+  @@index([categoryId, name])
+}
+
+model ProductVariant {
+  id            String  @id @default(cuid())
+  productId     String
+  attributes    Json    @default("{}")
+  dimensions    Json    @default("{}")
+  configuration Json    @default("{}")
+  product       Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model PriceRule {
+  id                    String        @id @default(cuid())
+  productId             String
+  ruleType              String
+  parameters            Json
+  calculationExpression String?
+  sourcePageId          String?
+  product               Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sourcePage            DocumentPage? @relation(fields: [sourcePageId], references: [id], onDelete: SetNull)
+}
+
+model Accessory {
+  id           String        @id @default(cuid())
+  productId    String
+  code         String?
+  name         String
+  price        Decimal?      @db.Decimal(12, 2)
+  conditions   Json          @default("{}")
+  sourcePageId String?
+  product      Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sourcePage   DocumentPage? @relation(fields: [sourcePageId], references: [id], onDelete: SetNull)
+}
+
+model SourceReference {
+  id             String       @id @default(cuid())
+  productId      String
+  documentPageId String
+  excerpt        String
+  boundingBox    Json?
+  product        Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  documentPage   DocumentPage @relation(fields: [documentPageId], references: [id], onDelete: Cascade)
+}
+
+model Customer {
+  id                   String                @id @default(cuid())
+  organizationId       String
+  name                 String
+  company              String?
+  email                String?
+  phone                String?
+  address              String?
+  postalCode           String?
+  city                 String?
+  province             String?
+  country              String?
+  fiscalCode           String?
+  vatNumber            String?
+  notes                String?
+  organization         Organization          @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  quotes               Quote[]
+  quoteParsingProfiles QuoteParsingProfile[]
+  createdAt            DateTime              @default(now())
+
+  @@index([organizationId, name])
+}
+
+model Quote {
+  id              String               @id @default(cuid())
+  organizationId  String
+  customerId      String?
+  createdByUserId String?
+  createdBy       User?                @relation("QuoteCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  savedBy         SavedQuote[]
+  publications    PublicQuote[]
+  title           String               @default("Nuovo preventivo")
+  status          QuoteStatus          @default(DRAFT)
+  currency        String               @default("EUR")
+  subtotal        Decimal              @default(0) @db.Decimal(12, 2)
+  discount        Decimal              @default(0) @db.Decimal(12, 2)
+  tax             Decimal              @default(0) @db.Decimal(12, 2)
+  total           Decimal              @default(0) @db.Decimal(12, 2)
+  organization    Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  customer        Customer?            @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  items           QuoteItem[]
+  messages        QuoteMessage[]
+  document        QuoteDocument?
+  documentImages  QuoteDocumentImage[]
+  deletedAt       DateTime?
+  deletedByUserId String?
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+
+  @@index([organizationId, deletedAt])
+  @@index([createdByUserId])
+}
+
+model QuoteCatalogProduct {
+  id                  String                    @id @default(cuid())
+  organizationId      String
+  name                String
+  pricingMode         CatalogProductPricingMode
+  price               Decimal                   @db.Decimal(12, 2)
+  minimumBillableArea Decimal?                  @db.Decimal(10, 3)
+  organization        Organization              @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt           DateTime                  @default(now())
+  updatedAt           DateTime                  @updatedAt
+
+  @@index([organizationId, name])
+}
+
+model UserAvatar {
+  userId    String   @id
+  mimeType  String
+  data      Bytes
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserProfileField {
+  id        String   @id @default(cuid())
+  userId    String
+  label     String
+  value     String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, label])
+  @@index([userId])
+}
+
+model PrivateNote {
+  id          String          @id @default(cuid())
+  userId      String
+  title       String
+  content     String          @db.Text
+  linkedType  String?
+  linkedId    String?
+  version     Int             @default(1)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  publication PublicBulletin?
+
+  @@index([userId, updatedAt])
+  @@index([linkedType, linkedId])
+}
+
+model PublicBulletin {
+  id        String      @id @default(cuid())
+  noteId    String      @unique
+  authorId  String
+  title     String
+  content   String      @db.Text
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  note      PrivateNote @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  author    User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt])
+}
+
+model CalendarEvent {
+  id             String        @id @default(cuid())
+  userId         String
+  organizationId String?
+  assignedUserId String?
+  title          String
+  date           String        @db.VarChar(10)
+  time           String?       @db.VarChar(5)
+  kind           String        @default("event")
+  description    String        @default("") @db.Text
+  completed      Boolean       @default(false)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  assignedUser   User?         @relation("CalendarEventAssignee", fields: [assignedUserId], references: [id], onDelete: SetNull)
+
+  @@index([userId, date])
+  @@index([organizationId, date])
+  @@index([assignedUserId])
+}
+
+model SavedQuote {
+  id         String    @id @default(cuid())
+  userId     String
+  quoteId    String
+  archivedAt DateTime?
+  createdAt  DateTime  @default(now())
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quote      Quote     @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, quoteId])
+}
+
+model PublicQuote {
+  id        String   @id @default(cuid())
+  quoteId   String
+  authorId  String
+  title     String
+  details   Json
+  amount    Decimal? @db.Decimal(12, 2)
+  currency  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  quote     Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+
+  @@unique([quoteId, authorId])
+  @@index([createdAt])
+}
+
+model Chat {
+  id            String        @id @default(cuid())
+  type          String
+  name          String?
+  directKey     String?       @unique
+  createdById   String?
+  lastMessageAt DateTime      @default(now())
+  createdAt     DateTime      @default(now())
+  creator       User?         @relation("ChatCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  members       ChatMember[]
+  messages      ChatMessage[]
+
+  @@index([lastMessageAt])
+}
+
+model ChatMember {
+  id       String   @id @default(cuid())
+  chatId   String
+  userId   String
+  joinedAt DateTime @default(now())
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chat     Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@unique([chatId, userId])
+  @@index([userId])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  chatId    String
+  senderId  String?
+  text      String   @db.Text
+  sequence  BigInt   @unique @default(autoincrement())
+  clientId  String
+  createdAt DateTime @default(now())
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  sender    User?    @relation(fields: [senderId], references: [id], onDelete: SetNull)
+
+  @@unique([chatId, clientId])
+  @@index([chatId, sequence])
+}
+
+model QuoteDocument {
+  id        String                  @id @default(cuid())
+  quoteId   String                  @unique
+  html      String                  @db.Text
+  settings  Json
+  revision  Int                     @default(1)
+  createdAt DateTime                @default(now())
+  updatedAt DateTime                @updatedAt
+  quote     Quote                   @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  versions  QuoteDocumentRevision[]
+}
+
+model QuoteDocumentRevision {
+  id         String        @id @default(cuid())
+  documentId String
+  revision   Int
+  html       String        @db.Text
+  settings   Json
+  createdAt  DateTime      @default(now())
+  document   QuoteDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@unique([documentId, revision])
+}
+
+model QuoteDocumentImage {
+  id        String   @id @default(cuid())
+  quoteId   String
+  name      String
+  mimeType  String
+  data      Bytes
+  createdAt DateTime @default(now())
+  quote     Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+
+  @@index([quoteId])
+}
+
+model QuoteItem {
+  id                  String                 @id @default(cuid())
+  quoteId             String
+  productId           String?
+  category            String
+  code                String?
+  description         String
+  quantity            Decimal                @default(1) @db.Decimal(10, 3)
+  widthMm             Int?
+  heightMm            Int?
+  unit                String                 @default("pezzo")
+  configuration       Json                   @default("{}")
+  pricingStatus       QuoteItemPricingStatus @default(NEEDS_PRICING)
+  unitPrice           Decimal?               @db.Decimal(12, 2)
+  totalPrice          Decimal?               @db.Decimal(12, 2)
+  calculationSnapshot Json
+  quote               Quote                  @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  product             Product?               @relation(fields: [productId], references: [id], onDelete: SetNull)
+  createdAt           DateTime               @default(now())
+}
+
+model QuoteMessage {
+  id        String           @id @default(cuid())
+  quoteId   String
+  role      QuoteMessageRole
+  content   String
+  sources   Json             @default("[]")
+  createdAt DateTime         @default(now())
+  quote     Quote            @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+
+  @@index([quoteId, createdAt])
+}
+
+model QuoteParsingProfile {
+  id             String       @id @default(cuid())
+  organizationId String
+  supplierId     String?
+  customerId     String?
+  senderKey      String
+  senderName     String
+  currency       String?
+  defaultVatRate Decimal?     @db.Decimal(6, 3)
+  paymentTerms   String?
+  shippingMode   String?
+  sourceLayout   String?
+  rules          Json         @default("{}")
+  sampleCount    Int          @default(1)
+  lastSeenAt     DateTime     @default(now())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  supplier       Supplier?    @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+  customer       Customer?    @relation(fields: [customerId], references: [id], onDelete: SetNull)
+
+  @@unique([organizationId, senderKey])
+  @@index([organizationId, supplierId])
+  @@index([organizationId, customerId])
+}

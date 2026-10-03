@@ -1,0 +1,26 @@
+{
+  "name": "lumi.01",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@12.6.0",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "dev": "pnpm --filter @lumi-01/web dev",
+    "build": "pnpm --filter @lumi-01/web build",
+    "start": "pnpm --filter @lumi-01/web start",
+    "test": "pnpm --filter @lumi-01/web test",
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "lint": "pnpm --filter @lumi-01/web lint",
+    "typecheck": "pnpm --filter @lumi-01/web typecheck",
+    "db:generate": "pnpm --filter @lumi-01/web db:generate",
+    "db:migrate": "pnpm --filter @lumi-01/web db:migrate"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^15.5.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-prisma": "^5.0.0",
+    "typescript": "^5.9.3"
+  }
+}

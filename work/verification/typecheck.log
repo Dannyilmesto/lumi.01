@@ -1,0 +1,2 @@
+$ pnpm --filter @serramenti/web typecheck
+$ tsc --noEmit

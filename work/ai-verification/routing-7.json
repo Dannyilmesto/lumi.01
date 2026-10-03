@@ -1,0 +1,11 @@
+{
+  "content": "Quanto vale Bitcoin adesso?",
+  "plan": {
+    "mode": "tool",
+    "tool": "get_crypto_price",
+    "arguments": {
+      "symbol": "BTC",
+      "currency": "EUR"
+    }
+  }
+}

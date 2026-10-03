@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "source_file_name": "test.pdf",
+  "sha256": "b4eaf40c1ef7923fead56e4cc93146ec0c563d6407db3f24339a4834d64877f6",
+  "file_size_bytes": 9111,
+  "page_count": 1,
+  "candidates": [],
+  "pages_with_little_text": [
+    1
+  ],
+  "pages_with_images_and_little_text": [
+    1
+  ],
+  "pages_ocr_completed": [],
+  "pages_ocr_needs_review": [],
+  "pages_ocr_not_processed": [],
+  "warnings": [
+    "I record estratti sono proposte da verificare, non prodotti o regole approvati.",
+    "Pagine con poco testo digitale; verificare se sono pagine vuote/grafiche o se richiedono OCR: 1",
+    "OCR non disponibile: Tesseract non è installato o non è nel PATH. Su macOS esegui: brew install tesseract tesseract-lang. Le pagine a basso testo restano da controllare nel PDF originale."
+  ]
+}

@@ -1,0 +1,19 @@
+START A: Scrivi una breve poesia sulla luna.
+(node:79509) ExperimentalWarning: Transform Types is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:79509) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/danny/Desktop/Serramenti%20Assistant/apps/web/src/lib/workspace-assistant-ai.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/danny/Desktop/Serramenti Assistant/apps/web/package.json.
+{"id":"A","seconds":83,"network":[],"answer":"Un disco d'argento nel velo notturno,\nsilenzio d'ambra, mistero sussurrante.\nGuarda la terra con sguardo assorto,\nun faro d'argento, sempre risplendente.","completed":true,"errors":[]}
+START B: Che tempo fa oggi a Roma?
+{"id":"B","seconds":96,"network":["https://geocoding-api.open-meteo.com/v1/search"],"webStatus":"unavailable","sources":0,"answer":"Non posso dirti che tempo fa oggi a Roma perché non ho accesso a dati in tempo reale.","completed":true,"errors":[]}
+START C: Quali sono le principali notizie di oggi?
+{"id":"C","seconds":81,"network":["https://feeds.bbci.co.uk/news/world/rss.xml","https://www.ansa.it/sito/ansait_rss.xml"],"webStatus":"unavailable","sources":0,"answer":"Non ho notizie di oggi da fornirti, poiché i dati web disponibili non contengono informazioni con una data verificabile per questo periodo.","completed":true,"errors":[]}
+START D: Cerca le ultime informazioni disponibili su Ollama.
+{"id":"D","seconds":81,"network":[],"webStatus":"unavailable","sources":0,"answer":"Non posso fornirti le ultime informazioni su Ollama in questo momento perché la ricerca web generale non è configurata a causa della mancanza di una chiave API.","completed":true,"errors":[]}
+START E: Che tempo fa oggi a Roma?
+{"id":"E","seconds":51,"network":[],"webStatus":"unavailable","sources":0,"answer":"Non posso dirti che tempo fa oggi a Roma perché non ho accesso a dati in tempo reale o a servizi meteo aggiornati.","completed":true,"errors":[]}
+{"routing":"Che tempo farà domani?","plan":{"mode":"tool","tool":"get_weather","arguments":{"location":"","date":"tomorrow"}}}
+{"routing":"Traduci in inglese: Quali sono le notizie di oggi?","plan":{"mode":"local","tool":"","arguments":{}}}
+{"routing":"Quanto vale Bitcoin adesso?","plan":{"mode":"tool","tool":"get_crypto_price","arguments":{"symbol":"BTC","currency":"EUR"}}}
+{"routing":"Qual è il risultato della partita?","plan":{"mode":"local","tool":"","arguments":{}}}

@@ -1,0 +1,15 @@
+.aider*
+node_modules
+.env
+.env.*
+!.env.example
+/apps/web/searxng/.env
+
+# Output di build, cache e file generati
+.next/
+.next-dev/
+*.tsbuildinfo
+__pycache__/
+
+# Documenti caricati dagli utenti (UPLOADS_DIR di default)
+/apps/web/.data/

@@ -1,0 +1,386 @@
+$ pnpm --filter @serramenti/web dev
+$ next dev
+   ▲ Next.js 15.5.26
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.208:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1362ms
+ ○ Compiling /api/profile ...
+ ✓ Compiled /api/profile in 2.3s (1087 modules)
+ GET /api/profile 401 in 2665ms
+ ✓ Compiled /api/profile/notes in 193ms (1089 modules)
+ GET /api/profile/notes 401 in 387ms
+ ✓ Compiled /api/chats in 182ms (1091 modules)
+ GET /api/chats 401 in 351ms
+ ✓ Compiled /api/auth/[...all] in 166ms (1093 modules)
+ POST /api/auth/sign-up/email 200 in 1131ms
+ GET /api/auth/verify-email?token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imx1bWktc21va2UtOTcyM2MyYmItZTY2Zi00NDRhLTlhNDAtNmE3MzgwNWE1YmVjQGV4YW1wbGUudGVzdCIsImlhdCI6MTc5MDgzNzQ0NiwiZXhwIjoxNzkwODQxMDQ2fQ._FdtzTcsUsm3d8Vt3Km5DlCtpe9e5MVXm418ENxmZDs&callbackURL=%2F 302 in 140ms
+ POST /api/auth/sign-in/email 200 in 471ms
+ GET /api/profile 200 in 71ms
+ ○ Compiling /api/quotes ...
+ ✓ Compiled /api/quotes in 865ms (1095 modules)
+ POST /api/quotes 201 in 1166ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 2.7s (1678 modules)
+ ✓ Compiled in 728ms (348 modules)
+ GET /dashboard 200 in 3970ms
+ GET /dashboard 200 in 837ms
+ ○ Compiling /dashboard/profilo ...
+ ✓ Compiled /api/assistant/documents in 3.1s (1713 modules)
+ GET /icon.jpg?54fd0b48e64b318e 200 in 1650ms
+ GET /api/assistant/documents?organizationId=cmuojaaia00000n7aggnujnr7 200 in 1992ms
+ GET /dashboard/profilo 200 in 3609ms
+ ✓ Compiled /dashboard/preventivi in 441ms (1738 modules)
+ GET /dashboard/preventivi 200 in 910ms
+ ✓ Compiled /dashboard/listini in 374ms (1746 modules)
+ GET /dashboard/listini 200 in 795ms
+ ○ Compiling /dashboard/preventivi/[id]/documento ...
+ ✓ Compiled /dashboard/preventivi/[id]/documento in 1540ms (2150 modules)
+ GET /dashboard/preventivi/cmup6dmsi00040ncyj73e24zt/documento 200 in 2829ms
+ PATCH /api/profile 200 in 34ms
+ ✓ Compiled /api/profile/fields in 436ms (2152 modules)
+ POST /api/profile/fields 201 in 675ms
+ PATCH /api/profile/fields 200 in 13ms
+ GET /api/profile/fields 200 in 12ms
+ DELETE /api/profile/fields 200 in 15ms
+ POST /api/profile/notes 201 in 27ms
+ PATCH /api/profile/notes 200 in 21ms
+ PATCH /api/profile/notes 409 in 22ms
+ GET /api/profile/notes 200 in 22ms
+ DELETE /api/profile/notes 200 in 16ms
+ ✓ Compiled /api/profile/calendar in 410ms (2154 modules)
+ POST /api/profile/calendar 201 in 616ms
+ PATCH /api/profile/calendar 200 in 15ms
+ GET /api/profile/calendar?month=2026-10 200 in 17ms
+ POST /api/profile/calendar 400 in 11ms
+ DELETE /api/profile/calendar 200 in 14ms
+ ✓ Compiled /api/profile/archive in 428ms (2158 modules)
+ POST /api/profile/archive 201 in 629ms
+ PUT /api/profile/archive?path=Test/prova.txt 201 in 23ms
+ GET /api/profile/archive?path=Test/prova.txt&download=1 200 in 12ms
+ GET /api/profile/archive?path=Test 200 in 12ms
+ PUT /api/profile/archive?path=Test/prova.txt 409 in 11ms
+ PUT /api/profile/archive?path=..%2Foutside 400 in 12ms
+ DELETE /api/profile/archive 200 in 20ms
+ ✓ Compiled /api/quotes/[id]/document in 449ms (2160 modules)
+ GET /api/quotes/cmup6dmsi00040ncyj73e24zt/document 200 in 1229ms
+ PUT /api/quotes/cmup6dmsi00040ncyj73e24zt/document 200 in 29ms
+prisma:error 
+Invalid `prisma.quoteDocument.create()` invocation:
+
+
+Unique constraint failed on the fields: (`quoteId`)
+ PUT /api/quotes/cmup6dmsi00040ncyj73e24zt/document 409 in 21ms
+ ○ Compiling /api/quotes/[id]/document/versions ...
+ ✓ Compiled /api/quotes/[id]/document/versions in 521ms (2162 modules)
+ GET /api/quotes/cmup6dmsi00040ncyj73e24zt/document/versions 200 in 1217ms
+ ✓ Compiled /api/quotes/[id]/document/pdf in 475ms (2166 modules)
+ GET /api/quotes/cmup6dmsi00040ncyj73e24zt/document/pdf?revision=1 200 in 2678ms
+ GET /api/quotes/cmup6dmsi00040ncyj73e24zt/document/pdf?revision=0 409 in 25ms
+ POST /api/assistant/documents 201 in 38ms
+ GET /api/assistant/documents?organizationId=cmup6dmsa00000ncy1ylem0n1 200 in 13ms
+ ○ Compiling /api/assistant/documents/[id]/original ...
+ ✓ Compiled /api/assistant/documents/[id]/original in 852ms (2168 modules)
+ GET /api/assistant/documents/cmup6e4dz000j0ncyvsehv18e/original 200 in 1528ms
+ GET /api/assistant/documents/cmup6e4dz000j0ncyvsehv18e/original 401 in 9ms
+ GET /api/assistant/documents?organizationId=inesistente 404 in 15ms
+ ○ Compiling /api/quotes/export ...
+ ✓ Compiled /api/quotes/export in 557ms (2171 modules)
+ GET /api/quotes/export?organizationId=cmup6dmsa00000ncy1ylem0n1&id=cmup6dmsi00040ncyj73e24zt&format=json 200 in 780ms
+ GET /api/quotes/export?organizationId=cmup6dmsa00000ncy1ylem0n1&id=cmup6dmsi00040ncyj73e24zt&format=csv 200 in 17ms
+ GET /api/quotes/export?organizationId=cmup6dmsa00000ncy1ylem0n1&id=cmup6dmsi00040ncyj73e24zt&format=xlsx 200 in 16ms
+ DELETE /api/quotes 200 in 30ms
+ GET /api/quotes/cmup6dmsi00040ncyj73e24zt/document 404 in 42ms
+ PATCH /api/quotes 200 in 19ms
+ GET /api/quotes/cmup6dmsi00040ncyj73e24zt/document 200 in 16ms
+ POST /api/profile/fields 201 in 23ms
+prisma:error 
+Invalid `prisma.$executeRaw()` invocation:
+
+
+Raw query failed. Code: `23505`. Message: `Key ("userId", label)=(bv05kZj7T1ge8OCri6LGITHTHojD5pv0, Duplicato di test) already exists.`
+Operazione profilo non completata. PrismaClientKnownRequestError
+ POST /api/profile/fields 500 in 15ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1351ms (1847 modules)
+ GET / 307 in 2035ms
+ GET /dashboard 200 in 156ms
+ ○ Compiling /api/assistant/documents ...
+ ✓ Compiled /api/assistant/documents in 876ms (1324 modules)
+ GET /api/assistant/documents?organizationId=zYqyh49N7hzv99c08qHR5pujsan3tDG0 200 in 1291ms
+ ✓ Compiled /dashboard/profilo in 282ms (1343 modules)
+ GET /dashboard/profilo?tab=quotes 200 in 468ms
+ ✓ Compiled /api/profile/quotes in 339ms (1861 modules)
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 481ms
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 482ms
+ ○ Compiling /api/quotes ...
+ ✓ Compiled /api/quotes in 525ms (1348 modules)
+ POST /api/quotes 201 in 665ms
+ ○ Compiling /dashboard/preventivi/[id]/documento ...
+ ✓ Compiled /dashboard/preventivi/[id]/documento in 594ms (1603 modules)
+ GET /dashboard/preventivi/cmupgjyyi000l0ncyao6lmc1t/documento 200 in 1034ms
+ GET /api/assistant/documents?organizationId=zYqyh49N7hzv99c08qHR5pujsan3tDG0 200 in 63ms
+ ✓ Compiled /api/quotes/[id]/document in 503ms (1605 modules)
+ PUT /api/quotes/cmupgjyyi000l0ncyao6lmc1t/document 200 in 784ms
+ ○ Compiling /api/quotes/[id]/price-lists ...
+ ✓ Compiled /api/quotes/[id]/price-lists in 757ms (2122 modules)
+ GET /api/quotes/cmupgjyyi000l0ncyao6lmc1t/price-lists?q= 200 in 1501ms
+ ✓ Compiled /api/price-lists/[id]/original in 365ms (2124 modules)
+Impossibile leggere il PDF originale del listino. Error: ENOENT: no such file or directory, open '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/d6d42839-2dc5-4090-9831-2a814a5cdfe9.pdf'
+    at async GET (src/app/api/price-lists/[id]/original/route.ts:32:22)
+  30 |
+  31 |   try {
+> 32 |     const contents = await getObjectStorage().get(priceList.originalPdfKey);
+     |                      ^
+  33 |     const filename = `${priceList.name}-${priceList.version}.pdf`
+  34 |       .replace(/[\\/\r\n\u0000-\u001f]/g, '-')
+  35 |       .slice(0, 180); {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/d6d42839-2dc5-4090-9831-2a814a5cdfe9.pdf'
+}
+ GET /api/price-lists/cmum30pqj000n0ndozq3w4ew8/original?inline=1 404 in 981ms
+Impossibile leggere il PDF originale del listino. Error: ENOENT: no such file or directory, open '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/1af64d81-f9aa-4a0d-82d1-ee6438129657.pdf'
+    at async GET (src/app/api/price-lists/[id]/original/route.ts:32:22)
+  30 |
+  31 |   try {
+> 32 |     const contents = await getObjectStorage().get(priceList.originalPdfKey);
+     |                      ^
+  33 |     const filename = `${priceList.name}-${priceList.version}.pdf`
+  34 |       .replace(/[\\/\r\n\u0000-\u001f]/g, '-')
+  35 |       .slice(0, 180); {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/1af64d81-f9aa-4a0d-82d1-ee6438129657.pdf'
+}
+ GET /api/price-lists/cmulywobn00070n0x1x7i5btr/original?inline=1 404 in 82ms
+Impossibile leggere il PDF originale del listino. Error: ENOENT: no such file or directory, open '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/d6d42839-2dc5-4090-9831-2a814a5cdfe9.pdf'
+    at async GET (src/app/api/price-lists/[id]/original/route.ts:32:22)
+  30 |
+  31 |   try {
+> 32 |     const contents = await getObjectStorage().get(priceList.originalPdfKey);
+     |                      ^
+  33 |     const filename = `${priceList.name}-${priceList.version}.pdf`
+  34 |       .replace(/[\\/\r\n\u0000-\u001f]/g, '-')
+  35 |       .slice(0, 180); {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/d6d42839-2dc5-4090-9831-2a814a5cdfe9.pdf'
+}
+ GET /api/price-lists/cmum30pqj000n0ndozq3w4ew8/original?inline=1 404 in 146ms
+ ○ Compiling /dashboard/preventivi/[id] ...
+ ✓ Compiled /dashboard/preventivi/[id] in 534ms (2123 modules)
+ GET /dashboard/preventivi/cmupgjyyi000l0ncyao6lmc1t 200 in 1273ms
+ ✓ Compiled /dashboard/preventivi in 303ms (1614 modules)
+ GET /dashboard/preventivi 200 in 591ms
+ GET /dashboard 200 in 100ms
+ GET /dashboard/profilo?tab=calendar 200 in 75ms
+ ✓ Compiled /api/profile/calendar in 398ms (1616 modules)
+ GET /api/profile/calendar?month=2026-10 200 in 533ms
+ GET /api/profile/calendar?month=2026-10 200 in 532ms
+ GET /dashboard/profilo?tab=quotes 200 in 77ms
+ ✓ Compiled /api/profile/quotes in 304ms (1619 modules)
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 420ms
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 422ms
+ GET /dashboard/profilo?tab=archive 200 in 79ms
+ ✓ Compiled /api/profile/archive in 309ms (1623 modules)
+ GET /api/profile/archive?path= 200 in 419ms
+ GET /api/profile/archive?path= 200 in 418ms
+ GET /dashboard/profilo?tab=community 200 in 76ms
+ ✓ Compiled /api/community in 379ms (2142 modules)
+ GET /api/community?kind=notes&offset=0 200 in 489ms
+ GET /api/community?kind=notes&offset=0 200 in 491ms
+ GET /dashboard/profilo?tab=quotes 200 in 76ms
+ GET /api/community?kind=notes&offset=0 200 in 19ms
+ ✓ Compiled /api/quotes in 373ms (1627 modules)
+ POST /api/quotes 201 in 507ms
+ GET /dashboard/preventivi/cmupglp55000u0ncy4amdbet4/documento 200 in 263ms
+ ○ Compiling /api/assistant/documents ...
+ ✓ Compiled /api/assistant/documents in 509ms (1629 modules)
+ GET /api/assistant/documents?organizationId=zYqyh49N7hzv99c08qHR5pujsan3tDG0 200 in 639ms
+ ○ Compiling /api/quotes/[id]/document ...
+ ✓ Compiled /api/quotes/[id]/document in 694ms (1631 modules)
+ PUT /api/quotes/cmupglp55000u0ncy4amdbet4/document 200 in 863ms
+ GET /dashboard 200 in 149ms
+ GET /dashboard/profilo 200 in 144ms
+ ○ Compiling /api/profile/notes ...
+ ✓ Compiled /api/profile/notes in 857ms (1603 modules)
+ ✓ Compiled (1605 modules)
+ GET /api/profile/fields 200 in 1902ms
+ GET /api/profile/fields 200 in 1901ms
+ GET /api/profile/notes?offset=0&q= 200 in 1909ms
+ GET /api/profile/notes?offset=0&q= 200 in 1909ms
+ GET /dashboard/profilo?tab=calendar 200 in 1327ms
+ ✓ Compiled /api/profile/calendar in 303ms (1607 modules)
+ GET /api/profile/calendar?month=2026-10 200 in 489ms
+ GET /api/profile/calendar?month=2026-10 200 in 490ms
+ GET /dashboard/profilo?tab=quotes 200 in 105ms
+ ✓ Compiled /api/profile/quotes in 279ms (1610 modules)
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 440ms
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 440ms
+ GET /dashboard/profilo?tab=archive 200 in 80ms
+ ✓ Compiled /api/profile/archive in 289ms (1614 modules)
+ GET /api/profile/archive?path= 200 in 392ms
+ GET /api/profile/archive?path= 200 in 392ms
+ GET /dashboard/profilo?tab=community 200 in 78ms
+ ○ Compiling /api/community ...
+ ✓ Compiled /api/community in 645ms (1616 modules)
+ GET /api/community?kind=notes&offset=0 200 in 782ms
+ GET /api/community?kind=notes&offset=0 200 in 782ms
+ GET /dashboard/profilo?tab=messages 200 in 45ms
+ GET /api/community?kind=notes&offset=0 200 in 27ms
+ ✓ Compiled /api/chats in 475ms (1618 modules)
+ GET /api/chats?offset=0 200 in 585ms
+ GET /api/chats?offset=0 200 in 585ms
+ GET /api/chats?offset=0 200 in 66ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 49ms
+ GET /api/chats?offset=0 200 in 36ms
+ GET /api/chats?offset=0 200 in 40ms
+ GET /api/chats?offset=0 200 in 103ms
+ GET /api/chats?offset=0 200 in 33ms
+ GET /api/chats?offset=0 200 in 109ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 33ms
+ GET /api/chats?offset=0 200 in 49ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 32ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 33ms
+ GET /api/chats?offset=0 200 in 76ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 53ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 67ms
+ GET /api/chats?offset=0 200 in 38ms
+ GET /api/chats?offset=0 200 in 38ms
+ GET /api/chats?offset=0 200 in 50ms
+ GET /api/chats?offset=0 200 in 66ms
+ GET /api/chats?offset=0 200 in 44ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 28ms
+ GET /api/chats?offset=0 200 in 51ms
+ GET /api/chats?offset=0 200 in 111ms
+ GET /api/chats?offset=0 200 in 42ms
+ GET /api/chats?offset=0 200 in 33ms
+ GET /api/chats?offset=0 200 in 129ms
+ GET /api/chats?offset=0 200 in 32ms
+ GET /api/chats?offset=0 200 in 43ms
+ GET /api/chats?offset=0 200 in 36ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 34ms
+ GET /api/chats?offset=0 200 in 37ms
+ GET /api/chats?offset=0 200 in 42ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 95ms
+ GET /api/chats?offset=0 200 in 34ms
+ GET /api/chats?offset=0 200 in 77ms
+ GET /api/chats?offset=0 200 in 37ms
+ GET /api/chats?offset=0 200 in 32ms
+ GET /api/chats?offset=0 200 in 84ms
+ GET /api/chats?offset=0 200 in 44ms
+ GET /api/chats?offset=0 200 in 36ms
+ GET /api/chats?offset=0 200 in 78ms
+ GET /api/chats?offset=0 200 in 36ms
+ GET /api/chats?offset=0 200 in 38ms
+ GET /api/chats?offset=0 200 in 84ms
+ GET /api/chats?offset=0 200 in 38ms
+ GET /api/chats?offset=0 200 in 68ms
+ GET /api/chats?offset=0 200 in 34ms
+ GET /api/chats?offset=0 200 in 39ms
+ GET /api/chats?offset=0 200 in 30ms
+ GET /api/chats?offset=0 200 in 52ms
+ GET /api/chats?offset=0 200 in 84ms
+ GET /api/chats?offset=0 200 in 83ms
+ GET /api/chats?offset=0 200 in 38ms
+ GET /api/chats?offset=0 200 in 90ms
+ GET /api/chats?offset=0 200 in 36ms
+ GET /api/chats?offset=0 200 in 86ms
+ GET /api/chats?offset=0 200 in 80ms
+ GET /api/chats?offset=0 200 in 81ms
+ GET /api/chats?offset=0 200 in 65ms
+ GET /api/chats?offset=0 200 in 76ms
+ GET /api/chats?offset=0 200 in 43ms
+ GET /api/chats?offset=0 200 in 79ms
+ GET /api/chats?offset=0 200 in 41ms
+ GET /api/chats?offset=0 200 in 72ms
+ GET /api/chats?offset=0 200 in 76ms
+ GET /api/chats?offset=0 200 in 78ms
+ GET /api/chats?offset=0 200 in 91ms
+ GET /api/chats?offset=0 200 in 64ms
+ GET /api/chats?offset=0 200 in 38ms
+ GET /api/chats?offset=0 200 in 69ms
+ GET /api/chats?offset=0 200 in 79ms
+ GET /api/chats?offset=0 200 in 76ms
+ GET /api/chats?offset=0 200 in 39ms
+ GET /api/chats?offset=0 200 in 84ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 86ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 36ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 80ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 34ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 45ms
+ GET /api/chats?offset=0 200 in 39ms
+ GET /api/chats?offset=0 200 in 37ms
+ GET /api/chats?offset=0 200 in 85ms
+ GET /api/chats?offset=0 200 in 33ms
+ GET /api/chats?offset=0 200 in 24ms
+ GET /api/chats?offset=0 200 in 55ms
+ GET /api/chats?offset=0 200 in 39ms
+ GET /api/chats?offset=0 200 in 75ms
+ GET /api/chats?offset=0 200 in 35ms
+ GET /api/chats?offset=0 200 in 42ms
+ GET /api/chats?offset=0 200 in 37ms
+ GET /api/chats?offset=0 200 in 32ms
+ GET /api/chats?offset=0 200 in 38ms
+ GET /api/chats?offset=0 200 in 70ms
+ GET /dashboard/profilo?tab=messages 200 in 785ms
+ GET /api/chats?offset=0 200 in 179ms
+ ○ Compiling /api/assistant/documents ...
+ ✓ Compiled /api/assistant/documents in 601ms (1606 modules)
+ GET /api/assistant/documents?organizationId=zYqyh49N7hzv99c08qHR5pujsan3tDG0 200 in 732ms
+ GET /dashboard/profilo?tab=quotes 200 in 86ms
+ ✓ Compiled /api/profile/quotes in 291ms (1609 modules)
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 679ms
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 680ms
+ GET /api/chats?offset=0 200 in 698ms
+ POST /api/profile/quotes 200 in 85ms
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=0 200 in 35ms
+ GET /api/profile/quotes?offset=0&q=&available=0&archived=1 200 in 38ms
+ ○ Compiling /api/quotes ...
+ ✓ Compiled /api/quotes in 812ms (1611 modules)
+ POST /api/quotes 201 in 948ms
+ GET /dashboard/preventivi/cmuph893s00150ncyk094o9gw/documento 200 in 280ms
+ GET /api/assistant/documents?organizationId=zYqyh49N7hzv99c08qHR5pujsan3tDG0 200 in 103ms
+ ✓ Compiled /api/quotes/[id]/document in 406ms (1613 modules)
+ PUT /api/quotes/cmuph893s00150ncyk094o9gw/document 200 in 587ms
+ ○ Compiling /api/quotes/[id]/price-lists ...
+ ✓ Compiled /api/quotes/[id]/price-lists in 846ms (1615 modules)
+ GET /api/quotes/cmuph893s00150ncyk094o9gw/price-lists?q= 200 in 979ms
+ ✓ Compiled /api/price-lists/[id]/original in 340ms (1617 modules)
+Impossibile leggere il PDF originale del listino. Error: ENOENT: no such file or directory, open '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/d6d42839-2dc5-4090-9831-2a814a5cdfe9.pdf'
+    at async GET (src/app/api/price-lists/[id]/original/route.ts:32:22)
+  30 |
+  31 |   try {
+> 32 |     const contents = await getObjectStorage().get(priceList.originalPdfKey);
+     |                      ^
+  33 |     const filename = `${priceList.name}-${priceList.version}.pdf`
+  34 |       .replace(/[\\/\r\n\u0000-\u001f]/g, '-')
+  35 |       .slice(0, 180); {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/danny/Desktop/Serramenti Assistant/apps/web/.data/uploads/d6d42839-2dc5-4090-9831-2a814a5cdfe9.pdf'
+}
+ GET /api/price-lists/cmum30pqj000n0ndozq3w4ew8/original?inline=1 404 in 495ms

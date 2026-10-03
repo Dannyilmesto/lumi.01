@@ -1,0 +1,78 @@
+{
+  "sha256": "a6faab67cea1fa1a8bb3b02fd1385085ac5e7341a6e119d2568a7a0686588a9a",
+  "file_size_bytes": 18325,
+  "page_count": 1,
+  "language": "ita+eng",
+  "dpi": 300,
+  "pages": [
+    {
+      "page_number": 1,
+      "status": "completed",
+      "text": "PORTA BATTENTE 80\nPREZZO 245,00 EUR",
+      "average_confidence": 96.0,
+      "words": [
+        {
+          "text": "PORTA",
+          "confidence": 96.0,
+          "bounding_box": {
+            "x0": 45.11,
+            "top": 72.95,
+            "x1": 194.11,
+            "bottom": 107.98
+          }
+        },
+        {
+          "text": "BATTENTE",
+          "confidence": 96.0,
+          "bounding_box": {
+            "x0": 209.94,
+            "top": 73.91,
+            "x1": 446.04,
+            "bottom": 107.02
+          }
+        },
+        {
+          "text": "80",
+          "confidence": 96.0,
+          "bounding_box": {
+            "x0": 459.24,
+            "top": 72.95,
+            "x1": 511.06,
+            "bottom": 107.98
+          }
+        },
+        {
+          "text": "PREZZO",
+          "confidence": 96.0,
+          "bounding_box": {
+            "x0": 45.11,
+            "top": 192.92,
+            "x1": 215.94,
+            "bottom": 227.95
+          }
+        },
+        {
+          "text": "245,00",
+          "confidence": 96.0,
+          "bounding_box": {
+            "x0": 231.06,
+            "top": 192.92,
+            "x1": 377.18,
+            "bottom": 232.99
+          }
+        },
+        {
+          "text": "EUR",
+          "confidence": 96.0,
+          "bounding_box": {
+            "x0": 394.21,
+            "top": 193.88,
+            "x1": 479.15,
+            "bottom": 227.95
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}

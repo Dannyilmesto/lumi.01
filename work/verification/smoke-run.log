@@ -1,0 +1,15 @@
+PASS Accesso protetto senza sessione
+PASS Registrazione locale, email di verifica e accesso
+PASS Creazione preventivo e spazio personale
+PASS Profilo e campi personalizzati
+PASS Note, collegamenti e conflitti di salvataggio
+PASS Calendario e validazione date
+PASS Archivio: cartelle, file, download e duplicati
+PASS Editor: salvataggio, revisioni, conflitti ed esportazione PDF
+PASS Worker Python: testo, prezzi e PDF non valido
+PASS Upload PDF, originale e isolamento dei documenti
+PASS Esportazioni JSON, CSV ed Excel
+PASS Cestino e ripristino preventivi
+PASS Nome campo duplicato restituisce un errore gestibile
+13/13 verifiche riuscite. Dati di prova rimossi.
+SMOKE_DONE 

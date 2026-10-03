@@ -1,0 +1,72 @@
+$ pnpm --filter @serramenti/web build
+$ next build
+   ▲ Next.js 15.5.26
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 21.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/29) ...
+   Generating static pages (7/29) 
+   Generating static pages (14/29) 
+   Generating static pages (21/29) 
+ ✓ Generating static pages (29/29)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                            Size  First Load JS
+┌ ƒ /                                                 220 B         102 kB
+├ ○ /_not-found                                       992 B         103 kB
+├ ƒ /api/assistant/actions                            220 B         102 kB
+├ ƒ /api/assistant/chat                               220 B         102 kB
+├ ƒ /api/assistant/documents                          220 B         102 kB
+├ ƒ /api/assistant/documents/[id]/original            220 B         102 kB
+├ ƒ /api/auth/[...all]                                220 B         102 kB
+├ ƒ /api/chats                                        220 B         102 kB
+├ ƒ /api/chats/[id]                                   220 B         102 kB
+├ ƒ /api/chats/[id]/messages                          220 B         102 kB
+├ ƒ /api/chats/[id]/stream                            220 B         102 kB
+├ ƒ /api/community                                    220 B         102 kB
+├ ƒ /api/people                                       220 B         102 kB
+├ ƒ /api/price-lists                                  220 B         102 kB
+├ ƒ /api/price-lists/[id]/candidates/[candidateId]    220 B         102 kB
+├ ƒ /api/price-lists/[id]/original                    220 B         102 kB
+├ ƒ /api/profile                                      220 B         102 kB
+├ ƒ /api/profile/archive                              220 B         102 kB
+├ ƒ /api/profile/archive/quotes                       220 B         102 kB
+├ ƒ /api/profile/avatar                               220 B         102 kB
+├ ƒ /api/profile/avatar/[userId]                      220 B         102 kB
+├ ƒ /api/profile/calendar                             220 B         102 kB
+├ ƒ /api/profile/fields                               220 B         102 kB
+├ ƒ /api/profile/note-targets                         220 B         102 kB
+├ ƒ /api/profile/notes                                220 B         102 kB
+├ ƒ /api/profile/quotes                               220 B         102 kB
+├ ƒ /api/quotes                                       220 B         102 kB
+├ ƒ /api/quotes/[id]/document                         220 B         102 kB
+├ ƒ /api/quotes/[id]/document/images                  220 B         102 kB
+├ ƒ /api/quotes/[id]/document/images/[imageId]        220 B         102 kB
+├ ƒ /api/quotes/[id]/document/pdf                     220 B         102 kB
+├ ƒ /api/quotes/[id]/document/versions                220 B         102 kB
+├ ƒ /api/quotes/[id]/messages                         220 B         102 kB
+├ ƒ /api/quotes/[id]/price-lists                      220 B         102 kB
+├ ƒ /api/quotes/export                                220 B         102 kB
+├ ƒ /dashboard                                        992 B         121 kB
+├ ƒ /dashboard/listini                              2.56 kB         128 kB
+├ ƒ /dashboard/listini/[id]                         1.65 kB         112 kB
+├ ƒ /dashboard/preventivi                           3.49 kB         129 kB
+├ ƒ /dashboard/preventivi/[id]                       4.3 kB         129 kB
+├ ƒ /dashboard/preventivi/[id]/documento             181 kB         291 kB
+├ ƒ /dashboard/profilo                              13.3 kB         124 kB
+├ ○ /icon.jpg                                           0 B            0 B
+├ ƒ /login                                          2.34 kB         127 kB
+└ ○ /reset-password                                 1.85 kB         127 kB
++ First Load JS shared by all                        102 kB
+  ├ chunks/7ec79f7c-9aa3fe12f9ed3ad6.js             54.2 kB
+  ├ chunks/9498-4888e60c8c65137e.js                   46 kB
+  └ other shared chunks (total)                        2 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

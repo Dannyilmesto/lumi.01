@@ -1,0 +1,26 @@
+{
+  "source_file_name": "test.pdf",
+  "sha256": "b4eaf40c1ef7923fead56e4cc93146ec0c563d6407db3f24339a4834d64877f6",
+  "file_size_bytes": 9111,
+  "page_count": 1,
+  "document_kind": "scanned",
+  "metadata": {
+    "title": "test",
+    "creation_date": "D:20261001141209Z",
+    "modification_date": "D:20261001141209Z"
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "text": "",
+      "text_character_count": 0,
+      "image_count": 1,
+      "requires_ocr": true,
+      "tables": [],
+      "warnings": [
+        "Pagina 1: poco testo digitale e immagini presenti; la pagina è candidata all’OCR."
+      ]
+    }
+  ],
+  "warnings": []
+}

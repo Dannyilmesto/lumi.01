@@ -1,0 +1,3 @@
+$ pnpm --filter @serramenti/web dev
+$ next dev
+Esportazione PDF non riuscita. Error

@@ -1,0 +1,233 @@
+$ pnpm --filter @serramenti/web dev
+$ next dev
+   ▲ Next.js 15.5.26
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.47:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.1s (1385 modules)
+ GET / 307 in 2855ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1409ms (1658 modules)
+ GET / 307 in 62ms
+ GET /login 200 in 44ms
+ ✓ Compiled /api/auth/[...all] in 478ms (1663 modules)
+ POST /api/auth/sign-in/email 200 in 1881ms
+ ○ Compiling /api/assistant/actions ...
+ ✓ Compiled /api/assistant/actions in 939ms (1760 modules)
+ POST /api/assistant/actions 200 in 5940ms
+ ○ Compiling /api/profile ...
+ ✓ Compiled /api/profile in 968ms (1762 modules)
+ GET /api/profile 401 in 1389ms
+ ○ Compiling /api/profile/notes ...
+ ✓ Compiled /api/profile/notes in 705ms (1763 modules)
+ GET /api/profile/notes 401 in 1096ms
+ ○ Compiling /api/chats ...
+ ✓ Compiled /api/chats in 572ms (1765 modules)
+ GET /api/chats 401 in 833ms
+ POST /api/auth/sign-up/email 200 in 146ms
+ GET /api/auth/verify-email?token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imx1bWktc21va2UtN2U3NjZhODktZGNjMi00NWU0LTlkYTMtZDI3NTRmYTE2MjI3QGV4YW1wbGUudGVzdCIsImlhdCI6MTc5MDg4MDc0MSwiZXhwIjoxNzkwODg0MzQxfQ.qhNgtu6PLLxBIXexD74M6ovyXn_iipvumKdQvvaY5DM&callbackURL=%2F 302 in 36ms
+ POST /api/auth/sign-in/email 200 in 103ms
+ GET /api/profile 200 in 32ms
+ ○ Compiling /api/quotes ...
+ ✓ Compiled /api/quotes in 889ms (1766 modules)
+ POST /api/quotes 201 in 1193ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 1132ms (1795 modules)
+ ✓ Compiled in 1202ms (350 modules)
+ GET /dashboard 200 in 2391ms
+ ○ Compiling /dashboard/profilo ...
+ ✓ Compiled /dashboard/profilo in 1552ms (1827 modules)
+ GET /dashboard/profilo 200 in 2368ms
+ ○ Compiling /dashboard/preventivi ...
+ ✓ Compiled /dashboard/preventivi in 950ms (1839 modules)
+ GET /dashboard/preventivi 200 in 1387ms
+ ○ Compiling /dashboard/listini ...
+ ✓ Compiled /dashboard/listini in 680ms (1847 modules)
+ GET /dashboard/listini 200 in 1100ms
+ ○ Compiling /dashboard/preventivi/[id]/documento ...
+ ✓ Compiled /dashboard/preventivi/[id]/documento in 1364ms (2175 modules)
+ GET /dashboard/preventivi/cmupw5lek0004pshc8vio56y8/documento 200 in 3076ms
+ PATCH /api/profile 200 in 41ms
+ ○ Compiling /api/profile/fields ...
+ ✓ Compiled /api/profile/fields in 924ms (2176 modules)
+ POST /api/profile/fields 201 in 1185ms
+ PATCH /api/profile/fields 200 in 22ms
+ GET /api/profile/fields 200 in 31ms
+ DELETE /api/profile/fields 200 in 30ms
+ POST /api/profile/notes 201 in 51ms
+ PATCH /api/profile/notes 200 in 27ms
+ PATCH /api/profile/notes 409 in 28ms
+ GET /api/profile/notes 200 in 35ms
+ DELETE /api/profile/notes 200 in 26ms
+ ○ Compiling /api/profile/calendar ...
+ ✓ Compiled /api/profile/calendar in 847ms (2177 modules)
+ POST /api/profile/calendar 201 in 1115ms
+ PATCH /api/profile/calendar 200 in 36ms
+ GET /api/profile/calendar?month=2026-10 200 in 29ms
+ POST /api/profile/calendar 400 in 28ms
+ DELETE /api/profile/calendar 200 in 30ms
+ ○ Compiling /api/profile/archive ...
+ ✓ Compiled /api/profile/archive in 772ms (2179 modules)
+ POST /api/profile/archive 201 in 1014ms
+ PUT /api/profile/archive?path=Test/prova.txt 201 in 147ms
+ ⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/api/profile/archive'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1483ms (2526 modules)
+ GET /api/profile/archive?path=Test/prova.txt&download=1 500 in 1815ms
+ ✓ Compiled in 447ms (684 modules)
+ ✓ Compiled in 287ms (684 modules)
+ POST /api/auth/sign-in/email 200 in 436ms
+ POST /api/profile/archive?path=Probe 201 in 42ms
+ PUT /api/profile/archive?path=Probe/file.txt 201 in 183ms
+ ✓ Compiled in 364ms (684 modules)
+ GET /api/profile/archive?path=Probe/file.txt&download=1 200 in 135ms
+ DELETE /api/profile/archive 200 in 108ms
+ ✓ Compiled in 306ms (684 modules)
+ ✓ Compiled in 274ms (684 modules)
+ GET /api/profile 401 in 25ms
+ GET /api/profile/notes 401 in 24ms
+ GET /api/chats 401 in 29ms
+ POST /api/auth/sign-up/email 200 in 101ms
+ GET /api/auth/verify-email?token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imx1bWktc21va2UtYTNiOWU1NzQtNmRiYy00MTM5LWFjZjAtYzU4NDBmMTI1NDIzQGV4YW1wbGUudGVzdCIsImlhdCI6MTc5MDg4MDgxOCwiZXhwIjoxNzkwODg0NDE4fQ.4YHdDSh43jxKhPXSkDG1nZjPjA27YRqg7Q5i3U9hQSg&callbackURL=%2F 302 in 25ms
+ POST /api/auth/sign-in/email 200 in 75ms
+ GET /api/profile 200 in 28ms
+ POST /api/quotes 201 in 35ms
+ GET /dashboard 200 in 300ms
+ GET /dashboard/profilo 200 in 99ms
+ GET /dashboard/preventivi 200 in 94ms
+ GET /dashboard/listini 200 in 92ms
+ GET /dashboard/preventivi/cmupw777v000gpshcwx80wcbk/documento 200 in 285ms
+ PATCH /api/profile 200 in 25ms
+ POST /api/profile/fields 201 in 39ms
+ PATCH /api/profile/fields 200 in 27ms
+ GET /api/profile/fields 200 in 31ms
+ DELETE /api/profile/fields 200 in 31ms
+ POST /api/profile/notes 201 in 33ms
+ PATCH /api/profile/notes 200 in 27ms
+ PATCH /api/profile/notes 409 in 27ms
+ GET /api/profile/notes 200 in 34ms
+ DELETE /api/profile/notes 200 in 26ms
+ POST /api/profile/calendar 201 in 29ms
+ PATCH /api/profile/calendar 200 in 36ms
+ GET /api/profile/calendar?month=2026-10 200 in 27ms
+ POST /api/profile/calendar 400 in 29ms
+ DELETE /api/profile/calendar 200 in 30ms
+ POST /api/profile/archive 201 in 34ms
+ PUT /api/profile/archive?path=Test/prova.txt 201 in 160ms
+ GET /api/profile/archive?path=Test/prova.txt&download=1 200 in 105ms
+ ✓ Compiled in 325ms (683 modules)
+ GET /api/profile/archive?path=Test 200 in 142ms
+ PUT /api/profile/archive?path=Test/prova.txt 409 in 172ms
+ ✓ Compiled in 318ms (683 modules)
+ PUT /api/profile/archive?path=..%2Foutside 400 in 66ms
+ DELETE /api/profile/archive 200 in 34ms
+ ○ Compiling /api/quotes/[id]/document ...
+ ✓ Compiled /api/quotes/[id]/document in 1146ms (2410 modules)
+ GET /api/quotes/cmupw777v000gpshcwx80wcbk/document 200 in 2359ms
+ PUT /api/quotes/cmupw777v000gpshcwx80wcbk/document 200 in 46ms
+prisma:error 
+Invalid `prisma.quoteDocument.create()` invocation:
+
+
+Unique constraint failed on the fields: (`quoteId`)
+ PUT /api/quotes/cmupw777v000gpshcwx80wcbk/document 409 in 46ms
+ ○ Compiling /api/quotes/[id]/document/versions ...
+ ✓ Compiled /api/quotes/[id]/document/versions in 869ms (2412 modules)
+ GET /api/quotes/cmupw777v000gpshcwx80wcbk/document/versions 200 in 1960ms
+ ○ Compiling /api/quotes/[id]/document/pdf ...
+ ✓ Compiled /api/quotes/[id]/document/pdf in 886ms (2416 modules)
+ GET /api/quotes/cmupw777v000gpshcwx80wcbk/document/pdf?revision=1 200 in 2389ms
+ GET /api/quotes/cmupw777v000gpshcwx80wcbk/document/pdf?revision=0 409 in 35ms
+ ○ Compiling /api/assistant/documents ...
+ ✓ Compiled /api/assistant/documents in 889ms (2419 modules)
+ POST /api/assistant/documents 201 in 1019ms
+ GET /api/assistant/documents?organizationId=cmupw777t000cpshczsyirv9n 200 in 126ms
+ ○ Compiling /api/assistant/documents/[id]/original ...
+ ✓ Compiled /api/assistant/documents/[id]/original in 1013ms (2421 modules)
+ GET /api/assistant/documents/cmupw7fdr000vpshcblmlvbfn/original 200 in 1930ms
+ GET /api/assistant/documents/cmupw7fdr000vpshcblmlvbfn/original 401 in 28ms
+ GET /api/assistant/documents?organizationId=inesistente 404 in 29ms
+ ○ Compiling /api/quotes/export ...
+ ✓ Compiled /api/quotes/export in 1490ms (2424 modules)
+ GET /api/quotes/export?organizationId=cmupw777t000cpshczsyirv9n&id=cmupw777v000gpshcwx80wcbk&format=json 200 in 1693ms
+ GET /api/quotes/export?organizationId=cmupw777t000cpshczsyirv9n&id=cmupw777v000gpshcwx80wcbk&format=csv 200 in 34ms
+ GET /api/quotes/export?organizationId=cmupw777t000cpshczsyirv9n&id=cmupw777v000gpshcwx80wcbk&format=xlsx 200 in 32ms
+ DELETE /api/quotes 200 in 31ms
+ GET /api/quotes/cmupw777v000gpshcwx80wcbk/document 404 in 55ms
+ PATCH /api/quotes 200 in 30ms
+ GET /api/quotes/cmupw777v000gpshcwx80wcbk/document 200 in 30ms
+ POST /api/profile/fields 201 in 28ms
+prisma:error 
+Invalid `prisma.$executeRaw()` invocation:
+
+
+Raw query failed. Code: `23505`. Message: `Key ("userId", label)=(yDd5vr2mx9uGSeg2r5nZD3z1kESn114w, Duplicato di test) already exists.`
+ POST /api/profile/fields 409 in 31ms
+ ○ Compiling /api/assistant/chat ...
+ ✓ Compiled /api/assistant/chat in 1173ms (2441 modules)
+ POST /api/assistant/chat 200 in 14572ms
+ POST /api/assistant/chat 200 in 18901ms
+ ○ Compiling /api/assistant/actions ...
+ ✓ Compiled /api/assistant/actions in 970ms (1762 modules)
+ POST /api/assistant/actions 200 in 2481ms
+ ✓ Compiled in 320ms (683 modules)
+ ✓ Compiled in 289ms (683 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 876ms (1377 modules)
+ GET / 307 in 1245ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 730ms (1544 modules)
+ GET /login 200 in 1158ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1052ms (1938 modules)
+ GET / 404 in 1273ms
+ ○ Compiling /icon.jpg ...
+ ✓ Compiled /icon.jpg in 572ms (1268 modules)
+ GET /icon.jpg?54fd0b48e64b318e 200 in 731ms
+ ✓ Compiled in 3.4s (683 modules)
+ ✓ Compiled in 430ms (683 modules)
+ ✓ Compiled in 528ms (683 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 830ms (1938 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open 'C:\Users\Danie\OneDrive\Desktop\Serramenti Assistant\apps\web\.next-dev\server\app\_not-found\page.js'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Danie\\OneDrive\\Desktop\\Serramenti Assistant\\apps\\web\\.next-dev\\server\\app\\_not-found\\page.js'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 926ms (2034 modules)
+ HEAD / 500 in 4457ms
+ ✓ Compiled in 859ms (791 modules)
+ ✓ Compiled in 550ms (683 modules)
+ ○ Compiling /api/auth/[...all] ...
+ ✓ Compiled /api/auth/[...all] in 1196ms (991 modules)
+ GET /api/auth/verify-email?token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImRhbmllbGVkaWdpb3Zhbm5pQHZpcmdpbGlvLml0IiwiaWF0IjoxNzkwODkwODMxLCJleHAiOjE3OTA4OTQ0MzF9.t0UiYBMI2BaN9fef9guiJVROYs5BmXED_gqksLczbIs&callbackURL=%2Fdashboard 302 in 1835ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 931ms (1420 modules)
+ GET /dashboard 200 in 1919ms
+ ○ Compiling /icon.jpg ...
+ ✓ Compiled /icon.jpg in 950ms (1434 modules)
+ GET /icon.jpg?54fd0b48e64b318e 200 in 1061ms
+ ○ Compiling /dashboard/profilo ...
+ ✓ Compiled /dashboard/profilo in 565ms (1453 modules)
+ GET /dashboard/profilo 200 in 1015ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 712ms (1472 modules)
+ GET /login 307 in 1099ms
+ GET /dashboard 200 in 201ms
+ GET /icon.jpg?54fd0b48e64b318e 200 in 36ms
+ GET /dashboard/profilo 200 in 125ms
+ GET /dashboard/profilo?tab=quotes 200 in 114ms
+ GET /dashboard/profilo?tab=archive 200 in 102ms
+ GET /dashboard/profilo?tab=community 200 in 369ms
+ GET /dashboard/profilo?tab=quotes 200 in 101ms
+ GET /dashboard/profilo?tab=quotes 200 in 246ms
+[?25h

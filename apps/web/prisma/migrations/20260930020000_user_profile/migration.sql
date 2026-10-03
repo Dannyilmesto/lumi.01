@@ -1,0 +1,28 @@
+ALTER TABLE "User" ADD COLUMN "isPresetAvatar" BOOLEAN NOT NULL DEFAULT true, ADD COLUMN "avatarPreset" TEXT NOT NULL DEFAULT 'sky';
+ALTER TABLE "Quote" ADD COLUMN "createdByUserId" TEXT;
+ALTER TABLE "Quote" ADD CONSTRAINT "Quote_createdByUserId_fkey" FOREIGN KEY ("createdByUserId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+CREATE INDEX "Quote_createdByUserId_idx" ON "Quote"("createdByUserId");
+
+CREATE TABLE "UserAvatar" ("userId" TEXT PRIMARY KEY, "mimeType" TEXT NOT NULL, "data" BYTEA NOT NULL, "updatedAt" TIMESTAMP(3) NOT NULL, CONSTRAINT "UserAvatar_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE TABLE "PrivateNote" ("id" TEXT PRIMARY KEY, "userId" TEXT NOT NULL, "title" TEXT NOT NULL, "content" TEXT NOT NULL, "version" INTEGER NOT NULL DEFAULT 1, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" TIMESTAMP(3) NOT NULL, CONSTRAINT "PrivateNote_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE INDEX "PrivateNote_userId_updatedAt_idx" ON "PrivateNote"("userId", "updatedAt");
+CREATE TABLE "PublicBulletin" ("id" TEXT PRIMARY KEY, "noteId" TEXT NOT NULL, "authorId" TEXT NOT NULL, "title" TEXT NOT NULL, "content" TEXT NOT NULL, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" TIMESTAMP(3) NOT NULL, CONSTRAINT "PublicBulletin_noteId_fkey" FOREIGN KEY ("noteId") REFERENCES "PrivateNote"("id") ON DELETE CASCADE ON UPDATE CASCADE, CONSTRAINT "PublicBulletin_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE UNIQUE INDEX "PublicBulletin_noteId_key" ON "PublicBulletin"("noteId");
+CREATE INDEX "PublicBulletin_createdAt_idx" ON "PublicBulletin"("createdAt");
+CREATE TABLE "CalendarEvent" ("id" TEXT PRIMARY KEY, "userId" TEXT NOT NULL, "title" TEXT NOT NULL, "date" VARCHAR(10) NOT NULL, "time" VARCHAR(5), "kind" TEXT NOT NULL DEFAULT 'event', "description" TEXT NOT NULL DEFAULT '', "completed" BOOLEAN NOT NULL DEFAULT false, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" TIMESTAMP(3) NOT NULL, CONSTRAINT "CalendarEvent_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE INDEX "CalendarEvent_userId_date_idx" ON "CalendarEvent"("userId", "date");
+CREATE TABLE "SavedQuote" ("id" TEXT PRIMARY KEY, "userId" TEXT NOT NULL, "quoteId" TEXT NOT NULL, "archivedAt" TIMESTAMP(3), "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "SavedQuote_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE, CONSTRAINT "SavedQuote_quoteId_fkey" FOREIGN KEY ("quoteId") REFERENCES "Quote"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE UNIQUE INDEX "SavedQuote_userId_quoteId_key" ON "SavedQuote"("userId", "quoteId");
+CREATE TABLE "PublicQuote" ("id" TEXT PRIMARY KEY, "quoteId" TEXT NOT NULL, "authorId" TEXT NOT NULL, "title" TEXT NOT NULL, "details" JSONB NOT NULL, "amount" DECIMAL(12,2), "currency" TEXT NOT NULL, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" TIMESTAMP(3) NOT NULL, CONSTRAINT "PublicQuote_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE, CONSTRAINT "PublicQuote_quoteId_fkey" FOREIGN KEY ("quoteId") REFERENCES "Quote"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE UNIQUE INDEX "PublicQuote_quoteId_authorId_key" ON "PublicQuote"("quoteId", "authorId");
+CREATE INDEX "PublicQuote_createdAt_idx" ON "PublicQuote"("createdAt");
+CREATE TABLE "Chat" ("id" TEXT PRIMARY KEY, "type" TEXT NOT NULL, "name" TEXT, "directKey" TEXT, "createdById" TEXT, "lastMessageAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "Chat_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE, CONSTRAINT "Chat_type_check" CHECK ("type" IN ('direct', 'group')));
+CREATE UNIQUE INDEX "Chat_directKey_key" ON "Chat"("directKey");
+CREATE INDEX "Chat_lastMessageAt_idx" ON "Chat"("lastMessageAt");
+CREATE TABLE "ChatMember" ("id" TEXT PRIMARY KEY, "chatId" TEXT NOT NULL, "userId" TEXT NOT NULL, "joinedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "ChatMember_chatId_fkey" FOREIGN KEY ("chatId") REFERENCES "Chat"("id") ON DELETE CASCADE ON UPDATE CASCADE, CONSTRAINT "ChatMember_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE);
+CREATE UNIQUE INDEX "ChatMember_chatId_userId_key" ON "ChatMember"("chatId", "userId");
+CREATE INDEX "ChatMember_userId_idx" ON "ChatMember"("userId");
+CREATE TABLE "ChatMessage" ("id" TEXT PRIMARY KEY, "chatId" TEXT NOT NULL, "senderId" TEXT, "text" TEXT NOT NULL, "sequence" BIGSERIAL NOT NULL, "clientId" TEXT NOT NULL, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "ChatMessage_chatId_fkey" FOREIGN KEY ("chatId") REFERENCES "Chat"("id") ON DELETE CASCADE ON UPDATE CASCADE, CONSTRAINT "ChatMessage_senderId_fkey" FOREIGN KEY ("senderId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE);
+CREATE UNIQUE INDEX "ChatMessage_sequence_key" ON "ChatMessage"("sequence");
+CREATE UNIQUE INDEX "ChatMessage_chatId_clientId_key" ON "ChatMessage"("chatId", "clientId");
+CREATE INDEX "ChatMessage_chatId_sequence_idx" ON "ChatMessage"("chatId", "sequence");

@@ -1,0 +1,181 @@
+[
+  {
+    "id": "A",
+    "content": "Scrivi una breve poesia sulla luna.",
+    "seconds": 83,
+    "models": [
+      "gemma4:latest",
+      "gemma4:latest"
+    ],
+    "network": [],
+    "web": null,
+    "answer": "Un disco d'argento nel velo notturno,\nsilenzio d'ambra, mistero sussurrante.\nGuarda la terra con sguardo assorto,\nun faro d'argento, sempre risplendente.",
+    "completed": true,
+    "errors": [],
+    "statuses": [
+      {
+        "type": "status",
+        "message": "Lumi sta formulando la risposta…"
+      }
+    ]
+  },
+  {
+    "id": "B",
+    "content": "Che tempo fa oggi a Roma?",
+    "seconds": 96,
+    "models": [
+      "gemma4:latest",
+      "gemma4:latest"
+    ],
+    "network": [
+      "https://geocoding-api.open-meteo.com/v1/search"
+    ],
+    "web": {
+      "status": "unavailable",
+      "sources": [],
+      "message": "Non è stato possibile recuperare informazioni aggiornate: servizio non disponibile, richiesta non valida o limite di rete. Non inventare dati recenti."
+    },
+    "answer": "Non posso dirti che tempo fa oggi a Roma perché non ho accesso a dati in tempo reale.",
+    "completed": true,
+    "errors": [],
+    "statuses": [
+      {
+        "type": "status",
+        "message": "Cerco informazioni aggiornate…"
+      },
+      {
+        "type": "status",
+        "message": "Lumi sta formulando la risposta…"
+      }
+    ]
+  },
+  {
+    "id": "C",
+    "content": "Quali sono le principali notizie di oggi?",
+    "seconds": 81,
+    "models": [
+      "gemma4:latest",
+      "gemma4:latest"
+    ],
+    "network": [
+      "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "https://www.ansa.it/sito/ansait_rss.xml"
+    ],
+    "web": {
+      "status": "unavailable",
+      "sources": [],
+      "message": "Nessuna notizia con data verificabile nel periodo richiesto. Non presentare notizie vecchie come notizie di oggi."
+    },
+    "answer": "Non ho notizie di oggi da fornirti, poiché i dati web disponibili non contengono informazioni con una data verificabile per questo periodo.",
+    "completed": true,
+    "errors": [],
+    "statuses": [
+      {
+        "type": "status",
+        "message": "Cerco informazioni aggiornate…"
+      },
+      {
+        "type": "status",
+        "message": "Lumi sta formulando la risposta…"
+      }
+    ]
+  },
+  {
+    "id": "D",
+    "content": "Cerca le ultime informazioni disponibili su Ollama.",
+    "seconds": 81,
+    "models": [
+      "gemma4:latest",
+      "gemma4:latest"
+    ],
+    "network": [],
+    "web": {
+      "status": "unavailable",
+      "sources": [],
+      "message": "Ricerca web generale non configurata: manca BRAVE_SEARCH_API_KEY. Meteo, notizie principali, quotazioni crypto e release GitHub restano disponibili senza questa chiave."
+    },
+    "answer": "Non posso fornirti le ultime informazioni su Ollama in questo momento perché la ricerca web generale non è configurata a causa della mancanza di una chiave API.",
+    "completed": true,
+    "errors": [],
+    "statuses": [
+      {
+        "type": "status",
+        "message": "Cerco informazioni aggiornate…"
+      },
+      {
+        "type": "status",
+        "message": "Lumi sta formulando la risposta…"
+      }
+    ]
+  },
+  {
+    "id": "E",
+    "content": "Che tempo fa oggi a Roma?",
+    "seconds": 51,
+    "models": [
+      "gemma4:latest",
+      "gemma4:latest",
+      "gemma4:latest",
+      "gemma4:latest",
+      "gemma4:latest",
+      "gemma4:latest"
+    ],
+    "network": [],
+    "web": {
+      "status": "unavailable",
+      "sources": [],
+      "message": "Non è stato possibile recuperare informazioni aggiornate: servizio non disponibile, richiesta non valida o limite di rete. Non inventare dati recenti."
+    },
+    "answer": "Non posso dirti che tempo fa oggi a Roma perché non ho accesso a dati in tempo reale o a servizi meteo aggiornati.",
+    "completed": true,
+    "errors": [],
+    "statuses": [
+      {
+        "type": "status",
+        "message": "Cerco informazioni aggiornate…"
+      },
+      {
+        "type": "status",
+        "message": "Lumi sta formulando la risposta…"
+      }
+    ]
+  },
+  {
+    "routing": "Che tempo farà domani?",
+    "plan": {
+      "mode": "tool",
+      "tool": "get_weather",
+      "arguments": {
+        "location": "",
+        "date": "tomorrow"
+      }
+    }
+  },
+  {
+    "routing": "Traduci in inglese: Quali sono le notizie di oggi?",
+    "plan": {
+      "mode": "local",
+      "tool": "",
+      "arguments": {}
+    }
+  },
+  {
+    "routing": "Quanto vale Bitcoin adesso?",
+    "plan": {
+      "mode": "tool",
+      "tool": "get_crypto_price",
+      "arguments": {
+        "symbol": "BTC",
+        "currency": "EUR"
+      }
+    }
+  },
+  {
+    "routing": "Qual è il risultato della partita?",
+    "plan": {
+      "mode": "local",
+      "tool": "",
+      "arguments": {}
+    }
+  }
+]

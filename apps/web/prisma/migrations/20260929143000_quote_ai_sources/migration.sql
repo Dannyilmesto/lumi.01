@@ -1,0 +1,2 @@
+ALTER TABLE "QuoteMessage"
+ADD COLUMN "sources" JSONB NOT NULL DEFAULT '[]';

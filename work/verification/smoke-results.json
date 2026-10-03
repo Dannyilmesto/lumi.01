@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-01T18:54:28.955Z",
+  "results": [
+    {
+      "name": "Accesso protetto senza sessione",
+      "ok": true,
+      "ms": 118
+    },
+    {
+      "name": "Registrazione locale, email di verifica e accesso",
+      "ok": true,
+      "ms": 257
+    },
+    {
+      "name": "Creazione preventivo e spazio personale",
+      "ok": true,
+      "ms": 884
+    },
+    {
+      "name": "Profilo e campi personalizzati",
+      "ok": true,
+      "ms": 164
+    },
+    {
+      "name": "Note, collegamenti e conflitti di salvataggio",
+      "ok": true,
+      "ms": 154
+    },
+    {
+      "name": "Calendario e validazione date",
+      "ok": true,
+      "ms": 169
+    },
+    {
+      "name": "Archivio: cartelle, file, download e duplicati",
+      "ok": true,
+      "ms": 735
+    },
+    {
+      "name": "Editor: salvataggio, revisioni, conflitti ed esportazione PDF",
+      "ok": true,
+      "ms": 6860
+    },
+    {
+      "name": "Worker Python: testo, prezzi e PDF non valido",
+      "ok": true,
+      "ms": 624
+    },
+    {
+      "name": "Upload PDF, originale e isolamento dei documenti",
+      "ok": true,
+      "ms": 3167
+    },
+    {
+      "name": "Esportazioni JSON, CSV ed Excel",
+      "ok": true,
+      "ms": 1764
+    },
+    {
+      "name": "Cestino e ripristino preventivi",
+      "ok": true,
+      "ms": 155
+    },
+    {
+      "name": "Nome campo duplicato restituisce un errore gestibile",
+      "ok": true,
+      "ms": 61
+    },
+    {
+      "name": "Chat AI in streaming",
+      "ok": true,
+      "ms": 14573
+    },
+    {
+      "name": "Lettura PDF con AI locale",
+      "ok": true,
+      "ms": 18904
+    },
+    {
+      "name": "Azioni AI: ricerca preventivi",
+      "ok": true,
+      "ms": 2483
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "content": "Che tempo farà domani?",
+  "plan": {
+    "mode": "tool",
+    "tool": "get_weather",
+    "arguments": {
+      "location": "",
+      "date": "tomorrow"
+    }
+  }
+}

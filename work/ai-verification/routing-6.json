@@ -1,0 +1,8 @@
+{
+  "content": "Traduci in inglese: Quali sono le notizie di oggi?",
+  "plan": {
+    "mode": "local",
+    "tool": "",
+    "arguments": {}
+  }
+}

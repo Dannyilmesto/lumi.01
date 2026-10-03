@@ -1,0 +1,8 @@
+{
+  "content": "Qual è il risultato della partita?",
+  "plan": {
+    "mode": "local",
+    "tool": "",
+    "arguments": {}
+  }
+}
