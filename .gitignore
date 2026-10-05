@@ -10,6 +10,9 @@ node_modules
 .next-dev/
 *.tsbuildinfo
 __pycache__/
+.venv/
+.pytest_cache/
+.ruff_cache/
 
 # Documenti caricati dagli utenti (UPLOADS_DIR di default)
 /apps/web/.data/

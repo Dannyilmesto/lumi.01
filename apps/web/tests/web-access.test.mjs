@@ -276,6 +276,16 @@ test("invalid router JSON falls back to deterministic web routing", async (t) =>
       ],
     }),
   );
+  // Feed RSS simulati: il test non deve dipendere dalla rete reale.
+  const pubDate = new Date(Date.now() - 60_000).toUTCString();
+  mockNetwork(t, (_url, _opts, cb) =>
+    response(
+      cb,
+      `<rss><item><title>Story</title><link>https://example.com/story</link><description>Real summary</description><pubDate>${pubDate}</pubDate></item></rss>`,
+      200,
+      { "content-type": "application/rss+xml" },
+    ),
+  );
   const result = await prepareWebContext({
     content: "ultime notizie",
     history: [],
